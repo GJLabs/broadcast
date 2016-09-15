@@ -121,17 +121,21 @@ export default class Main extends Component {
   postEntry(navigator){
     AsyncStorage.getItem('@MySuperStore:token', (err, token) => {
       var newEntry = { text: this.state.newEntry, location: this.state.location };
+      var body = new FormData(); 
+      body.append('text', newEntry.text); 
+      body.append('location', newEntry.location); 
 
       fetch('http://localhost:3000/api/entries', {
         method: 'POST',
         headers: {
-         'Content-Type': 'application/json',
+         'Content-Type': 'multipart/form-data',
          'x-access-token': token
         },
-        body: JSON.stringify(newEntry)
+        body: body
       })
         .then((response) => {
           this.getEntries();
+          console.log('RESPONSE TO POST ENTRY IS: ', response); 
           navigator.pop();
         })
           .catch((error) => {

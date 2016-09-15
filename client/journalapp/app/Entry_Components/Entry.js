@@ -17,7 +17,6 @@ var Entry = (props) => (
     <View style={ styles.row }>
       <View style={ styles.rowHeader }>
         <Text style={ styles.date }>
-          { parseDate(props.createdAt) }
         </Text>
         <Text style={ styles.location }>
           { props.location }
