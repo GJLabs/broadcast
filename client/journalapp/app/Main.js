@@ -10,7 +10,8 @@ import {
   AsyncStorage,
   Dimensions,
   Image,
-  TouchableHighlight
+  TouchableHighlight, 
+  CameraRoll
 } from 'react-native';
 
 import Tabs from 'react-native-tabs';
@@ -19,6 +20,7 @@ import FriendsTab from './Friend_Components/FriendsTab';
 import SettingsTab from './Settings_Components/SettingsTab';
 import FriendScene from './Friend_Components/FriendScene';
 import MessageScene from './Entry_Components/MessageScene';
+import CameraRollScene from './Entry_Components/CameraRollScene';
 import SearchFriends from './Friend_Components/SearchFriends';
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -65,23 +67,23 @@ export default class Main extends Component {
   // NOTE: React Native unfortunately uses navigator as a variable in their geolocation. This does not refer to 
   // the Navigator component, nor an instance of it. 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var latLng = {lat: position.coords.longitude, lng: position.coords.latitude};
-        // The GeoCoder needs Xcode configuration to work. For now, use dummy data.
-        // to establish connection with server. 
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     var latLng = {lat: position.coords.longitude, lng: position.coords.latitude};
+    //     // The GeoCoder needs Xcode configuration to work. For now, use dummy data.
+    //     // to establish connection with server. 
 
-        // GeoCoder.geocodePosition(latLng)
-        //   .then( (res) => {
-        //     this.setState({location: res.locality + ', ' + res.adminArea});
-        //   })
-        //   .catch( err => console.log("ERROR: ", err) );
+    //     // GeoCoder.geocodePosition(latLng)
+    //     //   .then( (res) => {
+    //     //     this.setState({location: res.locality + ', ' + res.adminArea});
+    //     //   })
+    //     //   .catch( err => console.log("ERROR: ", err) );
 
-        this.setState({location: 'San Francisco, CA'});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    //     this.setState({location: 'San Francisco, CA'});
+    //   },
+    //   (error) => alert(JSON.stringify(error)),
+    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    // );
   }
 
   // These lines clear the location that's being watched when the component unmounts.
@@ -95,7 +97,7 @@ export default class Main extends Component {
   // mount and also after the user makes a new entry (so it'll autorefresh the entry list).
   getEntries(){
     AsyncStorage.getItem('@MySuperStore:token', (err, token) => {
-      fetch('http://localhost:3000/api/entries', {
+      fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -103,15 +105,17 @@ export default class Main extends Component {
         }
       })
       .then( resp => { resp.json()
+        
         .then( json => {
+          console.log('json: ', JSON.parse(JSON.stringify(json)))
           const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
           this.setState({
             entries: ds.cloneWithRows(json)
           })
         })
-        .catch((error) => {
-          console.warn("fetch error on getrequest:", error)
-        });
+        // .catch((error) => {
+        //   console.warn("fetch error on getrequest:", error)
+        // });
       });
     });
   }
@@ -125,7 +129,7 @@ export default class Main extends Component {
       body.append('text', newEntry.text); 
       body.append('location', newEntry.location); 
 
-      fetch('http://localhost:3000/api/entries', {
+      fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'POST',
         headers: {
          'Content-Type': 'multipart/form-data',
@@ -221,8 +225,13 @@ export default class Main extends Component {
         <SearchFriends
           navigator={ navigator } />
       )
-    }
+    } else if (route.title === 'CameraRollScene') {
+      return (
+        <CameraRollScene
+          navigator={navigator} />
+      )
   }
+}
 
   // Note that all the Components are enclosed in the navigator. It sets the initial route to Main, 
   // which is then picked up in the navigatorRenderScene routing above, which then renders the view
@@ -250,7 +259,7 @@ export default class Main extends Component {
                       </Text>
                     </View>
                   )
-                } else if ( route.title === 'MessageScene' ){
+                } else if ( route.title === 'MessageScene' || route.title === 'CameraRollScene'){
                   return (
                     <View style={ styles.topBarView }>
                       <Text onPress={ ()=>{ navigator.pop() }} >
@@ -271,7 +280,7 @@ export default class Main extends Component {
                     </View>
                   )
                 }
-                if ( route.title === 'MessageScene' ) {
+                if ( route.title === 'MessageScene' || route.title === 'CameraRollScene') {
                   return (
                     <View style={ [styles.topBarView, styles.rightArrow] }>
                       <Text style={ [styles.faintText, styles.largerText] } onPress={(() => { this.postEntry(navigator); }).bind(this) } >
@@ -286,9 +295,11 @@ export default class Main extends Component {
                 // Title views for the entries routes.
                 if ( route.title === 'MessageScene') {
                   return (<Text style = { [styles.faintText, styles.titleCounter] }>{ 100 - this.state.newEntry.length }</Text>)
+                } else if (route.title === 'CameraRollScene') {
+                  return (<Text style={ styles.title }>{ 'Select Photo' }</Text>);
                 } else if ( this.state.page === 'EntriesTab' ) {
                   return (<Text style={ styles.title }>{ 'My Story' }</Text>);
-                }
+                } 
 
                 // Title views for the friends routes.
                 if ( route.title === 'SearchFriends') {
