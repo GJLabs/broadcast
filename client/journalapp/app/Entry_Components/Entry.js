@@ -7,12 +7,17 @@ import {
   TextInput,
   ListView,
   View,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 
 import styles from '../styles/EntryStyles';
+import Button from 'react-native-button';
+import EntryPic from './'
 
-var Entry = (props) => (
+
+
+var Entry = (props) => return (
   <View style={ styles.container }>
     <View style={ styles.row }>
       <View style={ styles.rowHeader }>
@@ -26,6 +31,10 @@ var Entry = (props) => (
         <Text style={ styles.entryText }>
           { props.text }
         </Text>
+        <Text>
+          { props.thumbnail }
+        </Text>
+        <EntryPic />
       </View>
     </View>
   </View>
@@ -37,3 +46,4 @@ var parseDate = (date) => {
   date = new Date(date);
   return DateFormatter(date, "ddd, mmm d");
 };
+

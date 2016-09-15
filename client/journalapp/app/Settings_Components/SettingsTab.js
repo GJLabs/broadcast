@@ -1,4 +1,4 @@
-// app/index.js
+  // app/index.js
 
 import React, { Component } from 'react';
 import {
