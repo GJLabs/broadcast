@@ -38,7 +38,8 @@ export default class Main extends Component {
       entries: ds.cloneWithRows([]),
       newEntry: '',
       friendName: '',
-      location: ''
+      location: '',
+      newImg: ''
     };
   }
 
@@ -49,6 +50,14 @@ export default class Main extends Component {
     this.setState({
       newEntry: text
     });
+  }
+
+  updateImg(img){
+    console.log('img: ', img)
+    this.setState({
+      newImg: img
+    });
+    console.log('THIS STATE OF IMAGE:', this.state.newImg)
   }
 
   // The friend's name is stored here so that it can be used as a title in the nav bar in Main. The assignment
@@ -124,16 +133,26 @@ export default class Main extends Component {
   // publish onPress method.
   postEntry(navigator){
     AsyncStorage.getItem('@MySuperStore:token', (err, token) => {
+      var imgData = JSON.stringify(this.state.newImg); 
       var newEntry = { text: this.state.newEntry, location: this.state.location };
+      console.log('final: ', this.state.newImg.uri)
+      var photo = {
+        uri: this.state.newImg.uri,
+        type: 'image/jpeg',
+        name: 'default.jpg'
+      }
       var body = new FormData(); 
       body.append('text', newEntry.text); 
-      body.append('location', newEntry.location); 
+      body.append('location', newEntry.location);
+      body.append('file', photo); 
+      console.log('body: ', body)
 
       fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'POST',
         headers: {
          'Content-Type': 'multipart/form-data',
-         'x-access-token': token
+         'x-access-token': token,
+         'Parse-Data': false
         },
         body: body
       })
@@ -218,6 +237,7 @@ export default class Main extends Component {
           navigator={navigator}
           getEntries={ this.getEntries.bind(this) }
           updateEntry = { this.updateEntry.bind(this) }
+          updateImg = { this.updateImg.bind(this) }
           location={ this.state.location }/>
       )
     } else if (route.title === 'SearchFriends') {

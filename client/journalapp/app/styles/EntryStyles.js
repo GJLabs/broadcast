@@ -35,15 +35,21 @@ const styles = StyleSheet.create({
   },
   rowBody: {
     marginLeft: 0,
-    marginTop: 12,
-    flexDirection: 'column',
+    marginTop: 5,
+    flexDirection: 'row',
   },
   entryText: {
     justifyContent: 'flex-start',
     fontSize: 15,
     fontWeight: '500',
+    width: Dimensions.get('window').width * .75,
     color:"#424242",
   },
+  entryImage: {
+    width: 50, 
+    height: 50,
+    borderRadius: 5
+  }
 });
 
 module.exports = styles;
