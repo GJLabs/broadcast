@@ -106,6 +106,7 @@ export default class FriendScene extends Component {
 
   handleAudioAdd() {
     console.warn('clicked');
+    this.props.updateAudio(/*---*/)////////////////////FILL ME
   }
 
   changeStyle() {

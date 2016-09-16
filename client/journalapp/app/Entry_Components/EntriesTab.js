@@ -46,10 +46,6 @@ export default class EntriesTab extends Component {
             <Text style={ styles.buttonText }>What did you do today?</Text>
             <Image style={ styles.tabbarimage } source={require('./../images/Pen_Icon.png')}/>
           </Button>
-          <Button style={ styles.headerButton } 
-              onPress={ () => this.props.navigator.push({ title: 'CameraRollScene'}) }>
-            <Text style={ styles.buttonText }>Do you have any pictures?</Text>
-          </Button>
         </View>
         <EntryList entries={ this.props.entries } />
       </View>

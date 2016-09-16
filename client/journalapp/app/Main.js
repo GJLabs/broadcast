@@ -53,11 +53,16 @@ export default class Main extends Component {
   }
 
   updateImg(img){
-    console.log('img: ', img)
     this.setState({
       newImg: img
     });
     console.log('THIS STATE OF IMAGE:', this.state.newImg)
+  }
+
+  updateAudio(audio) {
+    this.setState({
+      newAudio: audio
+    });
   }
 
   // The friend's name is stored here so that it can be used as a title in the nav bar in Main. The assignment
@@ -243,6 +248,7 @@ export default class Main extends Component {
           getEntries={ this.getEntries.bind(this) }
           updateEntry = { this.updateEntry.bind(this) }
           updateImg = { this.updateImg.bind(this) }
+          updateAudio = { this.updateAudio.bind(this) }
           location={ this.state.location }/>
       )
     } else if (route.title === 'SearchFriends') {
