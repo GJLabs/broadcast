@@ -41,16 +41,19 @@ const styles = StyleSheet.create({
     paddingTop: 6, 
   },
   footerContent: {
+    marginTop: 8,
     color:"#c7c7cc", 
     fontSize: 24
   },
   footerPadlock: {
-    marginLeft: Dimensions.get('window').width * .08,
+    marginTop: 7,
+    marginLeft: Dimensions.get('window').width * .13,
     width: Dimensions.get('window').width * .1,
   }, 
   footerArrow: {
-    marginLeft: Dimensions.get('window').width * .12,
-    marginRight: Dimensions.get('window').widith * .12
+    marginLeft: Dimensions.get('window').width * .13,
+    width: Dimensions.get('window').width * .1,
+    // marginRight: Dimensions.get('window').widith * .12
   },
   // footerText: {
   //   fontSize: 16,
@@ -58,20 +61,20 @@ const styles = StyleSheet.create({
   //   width: Dimensions.get('window').width * .36,
   // },
   addPicButton: {
-    width: Dimensions.get('window').width * .2,
-    marginLeft: .7,
-    // marginRight: .12,
-    // height: Dimensions.get('window').height * .2,
-    // borderStyle: 'solid',
-    // borderWidth: 1,
-    // borderColor: '#000000'
-  },
-  buttonText: {
-    marginTop: 7,
     fontSize: 24, 
-    marginLeft: Dimensions.get('window').width * .16,
-    
+    width: Dimensions.get('window').width * .1,
+    marginLeft: Dimensions.get('window').width * .13,
   },
+  addMicButton: {
+    width: Dimensions.get('window').width * .1,
+    marginLeft: Dimensions.get('window').width * .13,
+  },
+  // buttonText: {
+  //   fontSize: 24, 
+  //   width: Dimensions.get('window').width * .1,
+  //   marginLeft: Dimensions.get('window').width * .13,
+    // 
+  // },
 });
 
 module.exports = styles;

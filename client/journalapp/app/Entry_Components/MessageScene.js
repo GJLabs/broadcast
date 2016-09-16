@@ -104,6 +104,10 @@ export default class FriendScene extends Component {
     console.log('Current image source:', this.state.imageSource); 
   }
 
+  handleAudioAdd() {
+    console.warn('clicked');
+  }
+
   changeStyle() {
     var showStyle = {position: 'absolute', height:200, width:200, margin: 15, borderColor: 'rgba(175,175,175,.6)', borderWidth: 5, backgroundColor: '#f4f4f4', padding: 2, opacity: 0.8}; 
     var hideStyle = {position: 'absolute', height:200, width:200, margin: 15, opacity: 0}; 
@@ -130,8 +134,10 @@ export default class FriendScene extends Component {
           <View style={ [this.state.dynamicHeight(), styles.bodyWidth, styles.footer] }>
             <Icon style={ [styles.footerContent, styles.footerPadlock] } name="lock-open"/>
             <Icon style={ [styles.footerContent, styles.footerArrow] } name="near-me"/> 
-            <Icon style={ [styles.footerContent, styles.buttonText] } name='camera-alt'
+            <Icon style={ [styles.footerContent, styles.addPicButton] } name='camera-alt'
               onPress={ this.handlePhotoAdd.bind(this) }/>
+            <Icon style={ [styles.footerContent, styles.addMicButton] } name='mic-none' 
+              onPress={ this.handleAudioAdd.bind(this) }/>
           </View>
         </View>
       )
