@@ -13,15 +13,17 @@ import {
 
 import styles from '../styles/EntryStyles';
 import Button from 'react-native-button';
-import EntryPic from './'
+import EntryPic from './EntryPic';
 
 
 
-var Entry = (props) => return (
+
+var Entry = (props) => (
   <View style={ styles.container }>
     <View style={ styles.row }>
       <View style={ styles.rowHeader }>
         <Text style={ styles.date }>
+        { parseDate(props.createdAt) }
         </Text>
         <Text style={ styles.location }>
           { props.location }
@@ -31,10 +33,7 @@ var Entry = (props) => return (
         <Text style={ styles.entryText }>
           { props.text }
         </Text>
-        <Text>
-          { props.thumbnail }
-        </Text>
-        <EntryPic />
+        <EntryPic thumbnail={ props.thumbnail } />
       </View>
     </View>
   </View>
@@ -46,4 +45,3 @@ var parseDate = (date) => {
   date = new Date(date);
   return DateFormatter(date, "ddd, mmm d");
 };
-

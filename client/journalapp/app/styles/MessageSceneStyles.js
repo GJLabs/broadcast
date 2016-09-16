@@ -9,14 +9,21 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width * 1,
     paddingTop: 70, 
     marginLeft: 0,
-    backgroundColor: '#f5f6f6', 
+    backgroundColor: '#f5f6f6',
+    flex: 1 
   },
   bodyWidth: {
     marginLeft: Dimensions.get('window').width * .05,
     marginRight: Dimensions.get('window').width * .05,
   },
+  center: {
+    left: Dimensions.get('window').width * .20
+  },
+  textArea: {
+    height: 250,
+  },
   fadedText: {
-    // fontSize: 16,
+    fontSize: 16,
     color: 'gray',
     fontWeight: 'bold',
   }, 
@@ -25,18 +32,17 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     marginTop: 0, 
     flex: 1, 
+    bottom: 0, 
     flexDirection: 'row', 
     backgroundColor: 'white',
     width: Dimensions.get('window').width,
     borderTopWidth: 1, 
     borderTopColor: 'rgba(175,175,175,.6)',
-    height: 49, 
     paddingTop: 6, 
-
   },
   footerContent: {
     color:"#c7c7cc", 
-    // fontSize: 24
+    fontSize: 24
   },
   footerPadlock: {
     marginLeft: Dimensions.get('window').width * .08,
@@ -61,7 +67,7 @@ const styles = StyleSheet.create({
     // borderColor: '#000000'
   },
   buttonText: {
-    // marginTop
+    marginTop: 7,
     fontSize: 24, 
     marginLeft: Dimensions.get('window').width * .16,
     
