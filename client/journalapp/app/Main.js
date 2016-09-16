@@ -135,17 +135,22 @@ export default class Main extends Component {
     AsyncStorage.getItem('@MySuperStore:token', (err, token) => {
       var imgData = JSON.stringify(this.state.newImg); 
       var newEntry = { text: this.state.newEntry, location: this.state.location };
-      console.log('final: ', this.state.newImg.uri)
       var photo = {
         uri: this.state.newImg.uri,
         type: 'image/jpeg',
         name: 'default.jpg'
       }
+      var audio = {
+        uri: 'testURI',
+        type: 'audio/aac',
+        name: 'default.aac'
+      }
       var body = new FormData(); 
       body.append('text', newEntry.text); 
       body.append('location', newEntry.location);
       body.append('file', photo); 
-      console.log('body: ', body)
+      body.append('file', audio);
+      console.log('body: ', body);
 
       fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'POST',
