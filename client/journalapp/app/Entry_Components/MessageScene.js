@@ -25,7 +25,9 @@ const fetchParams = {
 }
 
 //// AUDIO COMPONENTS //// 
+import Sound from 'react-native-sound'
 import AudioRecord from './AudioRecord'
+
 
 const options = {
   title: 'Select Avatar', // specify null or empty string to remove the title 
@@ -64,6 +66,8 @@ export default class FriendScene extends Component {
       imageAttached: '',
       audioStyle: {height: 0},
       displayRecorder: false,
+      audioRecording: false,
+      audioPath: undefined 
     };
   };
 
@@ -99,6 +103,42 @@ export default class FriendScene extends Component {
     }, 200); 
   }
 
+  handleAudioRecording(audioPath){
+    // console.log('Handling audio!')
+    // console.log(audioPath); 
+    // console.log(typeof audioPath); 
+    var test = 'file://' + audioPath; 
+    console.log(test); 
+    // this.props.updateAudio(audioPath); 
+    this.setState({audioRecording: true, audioPath: test}); 
+  }
+
+  playRecorded(){
+    console.warn('Playing recorded!'); 
+    var audioPath = this.state.audioPath; 
+    console.log(audioPath); 
+    
+    var whoosh = new Sound(audioPath, '', (error) => {
+      if (error) {
+        console.warn('failed to load the sound', error);
+      } else { // loaded successfully
+        console.warn('duration in seconds: ' + whoosh.getDuration() +
+            'number of channels: ' + whoosh.getNumberOfChannels());
+      }
+    });
+
+    console.warn('No error!'); 
+
+    whoosh.play((success) => {
+      if (success) {
+        console.warn('successfully finished playing');
+      } else {
+        console.warn('playback failed due to audio decoding errors');
+      }
+    });
+
+  }
+
   // When the user clicks out of the text input but remains on this view, this resets the container
   // back to its original size, effectively pushing the footer back down. 
   moveDownForKeyboardHide(){
@@ -111,15 +151,12 @@ export default class FriendScene extends Component {
   _renderAudioRecorder(active) {
     if (active) {
       return (
-          <AudioRecord />
+          <AudioRecord handleAudioRecording={this.handleAudioRecording.bind(this)}/>
       )
     }
   }
 
   handlePhotoAdd(){
-    // console.log('Clicked to add photo!'); 
-    // console.log('options:', options);
-
     ImagePicker.showImagePicker(options, (response) => {
       console.log('response: ', response)
       this.props.updateImg(response)
@@ -150,6 +187,8 @@ export default class FriendScene extends Component {
   render() {
       return (
         <View style={ styles.container } ref='scrollView'>
+          <Text style={{height:50, width:50, backgroundColor: 'red'}}
+                onPress = {this.playRecorded.bind(this)}> {this.state.audioPath} </Text>
           <TextInput
               keyboardType='default'
               keyboardAppearance='light' 

@@ -64,6 +64,8 @@ export default class AudioRecord extends Component {
      if (this.state.recording) {
        AudioRecorder.stopRecording();
        this.setState({stoppedRecording: true, recording: false});
+       var audioPath = this.state.audioPath; 
+       this.props.handleAudioRecording(audioPath); 
      } else if (this.state.playing) {
        AudioRecorder.stopPlaying();
        this.setState({playing: false, stoppedPlaying: true});
