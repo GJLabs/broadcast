@@ -15,16 +15,17 @@ import {
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/MessageSceneStyles';
-import ImagePicker from 'react-native-image-picker';
-
 
 //// CAMERA COMPONENTS //// 
-// import CameraRollInput from './CameraRoll';
+import ImagePicker from 'react-native-image-picker';
 const fetchParams = {
     first: 3,
     groupTypes: 'All', 
     assetType: 'Photos'
 }
+
+//// AUDIO COMPONENTS //// 
+import AudioRecord from './AudioRecord'
 
 const options = {
   title: 'Select Avatar', // specify null or empty string to remove the title 
@@ -55,11 +56,14 @@ export default class FriendScene extends Component {
     this.props = props;
     this.state = {
       dynamicHeight: () => { return {height: Dimensions.get('window').height * .08}},
+      dynamicAudioHeight : () => { return { height: Dimensions.get('window').height * .0 }}, 
       dynamicMargin: () => { return {bottom: Dimensions.get('window').height * .10 }}, 
       image: 'http://media.todaybirthdays.com/thumb_x256x256/upload/1930/08/25/sean-connery.jpg', 
       imageSource: {uri: 'http://media.todaybirthdays.com/thumb_x256x256/upload/1930/08/25/sean-connery.jpg'}, 
       imageStyle: {position: 'absolute', height:200, width:200, margin: 15, opacity: 0}, 
-      imageAttached: ''
+      imageAttached: '',
+      audioStyle: {height: 0},
+      displayRecorder: false,
     };
   };
 
@@ -87,6 +91,31 @@ export default class FriendScene extends Component {
     );
   }
 
+  moveUpForAudioRecord(){
+    setTimeout( ()=> {
+      this.setState(
+        { dynamicAudioHeight : () => { return { height: Dimensions.get('window').height * .20 }} }
+      );
+    }, 200); 
+  }
+
+  // When the user clicks out of the text input but remains on this view, this resets the container
+  // back to its original size, effectively pushing the footer back down. 
+  moveDownForKeyboardHide(){
+    this.setState(
+      { dynamicHeight : () => { return {height: Dimensions.get('window').height * .08}},
+        dynamicMargin: () => { return {bottom: Dimensions.get('window').height * .10 }} }
+    );
+  }
+
+  _renderAudioRecorder(active) {
+    if (active) {
+      return (
+          <AudioRecord />
+      )
+    }
+  }
+
   handlePhotoAdd(){
     // console.log('Clicked to add photo!'); 
     // console.log('options:', options);
@@ -107,6 +136,9 @@ export default class FriendScene extends Component {
   handleAudioAdd() {
     console.warn('clicked');
     this.props.updateAudio(/*---*/)////////////////////FILL ME
+    var displayAudio = this.state.displayRecorder; 
+    displayRecorder = !displayAudio
+    this.setState({displayRecorder: displayRecorder})
   }
 
   changeStyle() {
@@ -118,20 +150,23 @@ export default class FriendScene extends Component {
   render() {
       return (
         <View style={ styles.container } ref='scrollView'>
-        <TextInput
-            keyboardType='default'
-            keyboardAppearance='light' 
-            multiline={ true }
-            placeholder= 'What did you do today?'
-            style={ [styles.textArea, styles.bodyWidth, styles.fadedText] }
-            maxLength={ 100 }
-            onChangeText={ (text) => this.props.updateEntry(text) }
-            onFocus= { this.moveUpForKeyboardShow.bind(this) }
-            onBlur= { this.moveDownForKeyboardHide.bind(this) }/>
-        <Image
-          style={[this.state.dynamicMargin(), this.state.imageStyle, styles.center]}
-          source={this.state.imageSource}
-        />
+          <TextInput
+              keyboardType='default'
+              keyboardAppearance='light' 
+              multiline={ true }
+              placeholder= 'What did you do today?'
+              style={ [styles.textArea, styles.bodyWidth, styles.fadedText] }
+              maxLength={ 100 }
+              onChangeText={ (text) => this.props.updateEntry(text) }
+              onFocus= { this.moveUpForKeyboardShow.bind(this) }
+              onBlur= { this.moveDownForKeyboardHide.bind(this) }/>
+          <Image
+            style={[this.state.dynamicMargin(), this.state.imageStyle, styles.center]}
+            source={this.state.imageSource}
+          />
+          <View> 
+            {this._renderAudioRecorder(this.state.displayRecorder)}
+          </View>
           <View style={ [this.state.dynamicHeight(), styles.bodyWidth, styles.footer] }>
             <Icon style={ [styles.footerContent, styles.footerPadlock] } name="lock-open"/>
             <Icon style={ [styles.footerContent, styles.footerArrow] } name="near-me"/> 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
-export default class CameraRollScene extends Component {
+export default class AudioRecord extends Component {
   constructor(props) {
     super(props);
     this.props = props;
@@ -29,6 +29,7 @@ export default class CameraRollScene extends Component {
   componentDidMount() {
     let audioPath = AudioUtils.DocumentDirectoryPath + '/test.aac';
     this.prepareRecordingPath(audioPath);
+    this.setState({audioPath: audioPath}); 
     AudioRecorder.onProgress = (data) => {
       this.setState({currentTime: Math.floor(data.currentTime)});
     };
@@ -96,7 +97,7 @@ export default class CameraRollScene extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1, 
     backgroundColor: "#2b608a",
   },
   controls: {
@@ -105,12 +106,13 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   progressText: {
-    paddingTop: 50,
-    fontSize: 50,
+    paddingTop: 20,
+    paddingBottom: 10, 
+    fontSize: 20,
     color: "#fff"
   },
   button: {
-    padding: 20
+    padding: 18
   },
   disabledButtonText: {
     color: '#eee'
