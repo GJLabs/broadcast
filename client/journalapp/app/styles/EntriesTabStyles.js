@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   }, 
   headerButton: {
     width: Dimensions.get('window').width * .75,
+    alignItems: 'center'
   },
   buttonText: {
     color: '#0078f0',
