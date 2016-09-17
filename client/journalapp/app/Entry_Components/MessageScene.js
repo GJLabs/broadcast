@@ -186,7 +186,7 @@ export default class FriendScene extends Component {
   render() {
       return (
         <View style={ styles.container } ref='scrollView'>
-          <Text style={{height:50, width:50, backgroundColor: 'red'}}
+          <Text style={{backgroundColor: 'red'}}
                 onPress = {this.playRecorded.bind(this)}> {this.state.audioPath} </Text>
           <TextInput
               keyboardType='default'
