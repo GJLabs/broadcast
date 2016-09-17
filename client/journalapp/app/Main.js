@@ -145,19 +145,20 @@ export default class Main extends Component {
         type: 'image/jpeg',
         name: 'default.jpg'
       }
-      // var audio = {
-      //   uri: 'testURI',
-      //   type: 'audio/aac',
-      //   name: 'default.aac'
-      // }
+      var audio = {
+        uri: this.state.newAudio,
+        type: 'audio/aac',
+        name: 'default.aac'
+      }
+      console.log('audio obj: ', audio);
       var body = new FormData(); 
       body.append('text', newEntry.text); 
       body.append('location', newEntry.location);
       body.append('file', photo); 
-      // body.append('file', audio);
-      console.log('body: ', body);
+      body.append('file', audio);
 
-      fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
+      fetch('http://localhost:3000/api/entries', {
+      // fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'POST',
         headers: {
          'Content-Type': 'multipart/form-data',
