@@ -30,6 +30,7 @@
 		9D8A3644C13445D58BB8D7D5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80D8F5C2C9F4430594193CB5 /* FontAwesome.ttf */; };
 		B2CAE826D6984660AFB56E16 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B65E92C8F742CFB6016E4B /* Zocial.ttf */; };
 		D7F8F3D01D8CCA67006B76C3 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F8F3CF1D8CCA56006B76C3 /* libRNSound.a */; };
+		D7F8F40C1D8CF732006B76C3 /* RNAudioPlayerURL.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F8F40B1D8CF732006B76C3 /* RNAudioPlayerURL.m */; };
 		DB97562602E74D8B92C8000D /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B602B15FCCC4A28AC557ED8 /* Entypo.ttf */; };
 		E0B2290E1D8CACB300BE3408 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B229061D8CAC8300BE3408 /* libRNImagePicker.a */; };
 		E0B229321D8CD9EC00BE3408 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B229311D8CD9DA00BE3408 /* libRNAudio.a */; };
@@ -182,6 +183,8 @@
 		9B602B15FCCC4A28AC557ED8 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		B5358D021A35460EA99C0C16 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		D7F8F3CA1D8CCA56006B76C3 /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		D7F8F40A1D8CF732006B76C3 /* RNAudioPlayerURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAudioPlayerURL.h; path = "../node_modules/react-native-ios-network-audio/RNAudioPlayerURL.h"; sourceTree = "<group>"; };
+		D7F8F40B1D8CF732006B76C3 /* RNAudioPlayerURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNAudioPlayerURL.m; path = "../node_modules/react-native-ios-network-audio/RNAudioPlayerURL.m"; sourceTree = "<group>"; };
 		DFE633B568A344D7A9324A7F /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E0B228F71D8CAC8300BE3408 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		E0B229081D8CAC8F00BE3408 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 		13B07FAE1A68108700A75B9A /* Journalapp */ = {
 			isa = PBXGroup;
 			children = (
+				D7F8F40A1D8CF732006B76C3 /* RNAudioPlayerURL.h */,
+				D7F8F40B1D8CF732006B76C3 /* RNAudioPlayerURL.m */,
 				E0B228F71D8CAC8300BE3408 /* RNImagePicker.xcodeproj */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -734,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				D7F8F40C1D8CF732006B76C3 /* RNAudioPlayerURL.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
