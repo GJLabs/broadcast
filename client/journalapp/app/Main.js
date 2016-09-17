@@ -127,9 +127,6 @@ export default class Main extends Component {
             entries: ds.cloneWithRows(json)
           })
         })
-        // .catch((error) => {
-        //   console.warn("fetch error on getrequest:", error)
-        // });
       });
     });
   }
@@ -178,7 +175,7 @@ export default class Main extends Component {
           navigator.pop();
         })
           .catch((error) => {
-            console.warn("fetch error:", error)
+            console.warn(error);
           });
     });
   }
