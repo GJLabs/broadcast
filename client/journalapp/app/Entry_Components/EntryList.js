@@ -16,7 +16,9 @@ var EntryList = ({entries}) => (
       enableEmptySections={true} 
       dataSource={entries}
       renderRow={ (rowData) =>
-          <Entry text={ rowData.text } createdAt={ rowData.createdAt } location={ rowData.location } thumbnail={ rowData.thumbnail }/>
+          <Entry text={ rowData.text } 
+          createdAt={ rowData.createdAt } location={ rowData.location } 
+          thumbnail={ rowData.thumbnail } filepath={ rowData.filepath } audiopath = { rowData.audiopath }/>
         }/>
 )
 

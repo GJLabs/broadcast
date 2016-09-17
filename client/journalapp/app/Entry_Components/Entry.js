@@ -33,7 +33,7 @@ var Entry = (props) => (
         <Text style={ styles.entryText }>
           { props.text }
         </Text>
-        <EntryPic thumbnail={ props.thumbnail } />
+        <EntryPic thumbnail={ props.filepath } />
       </View>
     </View>
   </View>
