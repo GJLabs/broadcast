@@ -156,7 +156,6 @@ export default class Main extends Component {
       body.append('location', newEntry.location);
       body.append('file', photo); 
       body.append('file', audio);
-      console.log('body: ', body);
 
       fetch('http://localhost:3000/api/entries', {
       // fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
