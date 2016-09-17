@@ -7,7 +7,6 @@ import {
 const styles = StyleSheet.create({
   container: {
     position:'relative',
-    paddingTop:10, 
     marginBottom: 37.5
   }
 })

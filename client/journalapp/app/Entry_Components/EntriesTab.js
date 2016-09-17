@@ -40,15 +40,11 @@ export default class EntriesTab extends Component {
     return (
       <View style={ styles.container }>
         <View style={ styles.header }>
-          <Text style={ styles.date }>{ DateFormatter(new Date(), "ddd, mmm d") }</Text>
+          
           <Button style={ styles.headerButton } 
               onPress={ () => this.props.navigator.push({ title: 'MessageScene'}) }>
-            <Text style={ styles.buttonText }>What did you do today?</Text>
+            <Text style={ styles.buttonText }>Express Yourself!</Text>
             <Image style={ styles.tabbarimage } source={require('./../images/Pen_Icon.png')}/>
-          </Button>
-          <Button style={ styles.headerButton } 
-              onPress={ () => this.props.navigator.push({ title: 'CameraRollScene'}) }>
-            <Text style={ styles.buttonText }>Do you have any pictures?</Text>
           </Button>
         </View>
         <EntryList entries={ this.props.entries } />
