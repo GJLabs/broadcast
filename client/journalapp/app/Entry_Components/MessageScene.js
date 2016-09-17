@@ -109,7 +109,7 @@ export default class FriendScene extends Component {
     // console.log(typeof audioPath); 
     var test = 'file://' + audioPath; 
     console.log(test); 
-    // this.props.updateAudio(audioPath); 
+    this.props.updateAudio(audioPath); 
     this.setState({audioRecording: true, audioPath: test}); 
   }
 
@@ -118,7 +118,7 @@ export default class FriendScene extends Component {
     var audioPath = this.state.audioPath; 
     console.log(audioPath); 
     
-    var whoosh = new Sound(audioPath, '', (error) => {
+    var whoosh = new Sound('/Users/Riedel/Music/iTunes/iTunes Media/Music/Tiësto/Unknown Album/Wasted (Lyric Video) ft. Matthew Koma.mp3', '', (error) => {
       if (error) {
         console.warn('failed to load the sound', error);
       } else { // loaded successfully
@@ -129,7 +129,7 @@ export default class FriendScene extends Component {
 
     console.warn('No error!'); 
 
-    whoosh.play((success) => {
+    whoosh.setVolume(.5).play((success) => {
       if (success) {
         console.warn('successfully finished playing');
       } else {
