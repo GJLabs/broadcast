@@ -172,7 +172,6 @@ export default class FriendScene extends Component {
 
   handleAudioAdd() {
     console.warn('clicked');
-    this.props.updateAudio(/*---*/)////////////////////FILL ME
     var displayAudio = this.state.displayRecorder; 
     displayRecorder = !displayAudio
     this.setState({displayRecorder: displayRecorder})

@@ -157,8 +157,8 @@ export default class Main extends Component {
       body.append('file', photo); 
       body.append('file', audio);
 
-      fetch('http://localhost:3000/api/entries', {
-      // fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
+      // fetch('http://localhost:3000/api/entries', {
+      fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
         method: 'POST',
         headers: {
          'Content-Type': 'multipart/form-data',
