@@ -35,8 +35,7 @@ export default class FriendScene extends Component {
     }
   }
 
-  playAudio() {
-    console.warn('Playing audio!'); 
+  playAudio() { 
     var audioPath = this.props.audiopath; 
     if (audioPath !== null) {
       audio.initWithURL(audioPath);

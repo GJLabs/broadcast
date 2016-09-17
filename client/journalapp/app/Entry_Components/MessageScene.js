@@ -114,7 +114,6 @@ export default class FriendScene extends Component {
   }
 
   playRecorded(){
-    console.warn('Playing recorded!'); 
     var audioPath = this.state.audioPath; 
     console.log(audioPath); 
     
@@ -122,16 +121,12 @@ export default class FriendScene extends Component {
       if (error) {
         console.warn('failed to load the sound', error);
       } else { // loaded successfully
-        console.warn('duration in seconds: ' + whoosh.getDuration() +
-            'number of channels: ' + whoosh.getNumberOfChannels());
       }
     });
 
-    console.warn('No error!'); 
 
     whoosh.setVolume(.5).play((success) => {
       if (success) {
-        console.warn('successfully finished playing');
       } else {
         console.warn('playback failed due to audio decoding errors');
       }
@@ -171,7 +166,6 @@ export default class FriendScene extends Component {
   }
 
   handleAudioAdd() {
-    console.warn('clicked');
     var displayAudio = this.state.displayRecorder; 
     displayRecorder = !displayAudio
     this.setState({displayRecorder: displayRecorder})
@@ -186,8 +180,6 @@ export default class FriendScene extends Component {
   render() {
       return (
         <View style={ styles.container } ref='scrollView'>
-          <Text style={{backgroundColor: 'red'}}
-                onPress = {this.playRecorded.bind(this)}> {this.state.audioPath} </Text>
           <TextInput
               keyboardType='default'
               keyboardAppearance='light' 
