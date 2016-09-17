@@ -154,8 +154,13 @@ export default class Main extends Component {
       var body = new FormData(); 
       body.append('text', newEntry.text); 
       body.append('location', newEntry.location);
-      body.append('file', photo); 
-      body.append('audio', audio);
+      if (photo.uri) {
+        body.append('file', photo); 
+      }
+      if (audio.uri) {
+        body.append('file', audio);
+      }
+      console.log(body);
 
       // fetch('http://localhost:3000/api/entries', {
       fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
