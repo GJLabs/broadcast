@@ -33,6 +33,9 @@ var Entry = (props) => (
         <Text style={ styles.entryText }>
           { props.text }
         </Text>
+        <Text>
+          {props.audiopath}
+        </Text>
         <EntryPic thumbnail={ props.filepath } />
       </View>
     </View>
