@@ -155,7 +155,7 @@ export default class Main extends Component {
       body.append('text', newEntry.text); 
       body.append('location', newEntry.location);
       body.append('file', photo); 
-      body.append('file', audio);
+      body.append('audio', audio);
 
       // fetch('http://localhost:3000/api/entries', {
       fetch('https://stark-ravine-57660.herokuapp.com/api/entries', {
@@ -330,7 +330,7 @@ export default class Main extends Component {
                 } else if (route.title === 'CameraRollScene') {
                   return (<Text style={ styles.title }>{ 'Select Photo' }</Text>);
                 } else if ( this.state.page === 'EntriesTab' ) {
-                  return (<Text style={ styles.title }>{ 'My Story' }</Text>);
+                  return (<Text style={ styles.title }>{ 'BROADCAST' }</Text>);
                 } 
 
                 // Title views for the friends routes.
