@@ -42,14 +42,30 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     fontSize: 15,
     fontWeight: '500',
-    width: Dimensions.get('window').width * .75,
+    width: Dimensions.get('window').width * .7,
     color:"#424242",
+    marginRight: 10
   },
   entryImage: {
     width: 50, 
     height: 50,
-    borderRadius: 5
+    borderRadius: 5,
+    // 'justifyContent': 'flex-end' 
+  },
+  micPic: {
+    fontSize: 16,
+    // 'justifyContent': 'flex-start' 
+    // width: 15,
+    // height: 15, 
+
+  },
+  picView: {
+    flexDirection: 'row'
+  },
+  placeHolder: {
+    width: 16
   }
+
 });
 
 module.exports = styles;
